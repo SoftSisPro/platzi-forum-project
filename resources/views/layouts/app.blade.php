@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Livewire -->
+        @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gradient-to-r from-slate-800 to-slate-900">
@@ -22,5 +25,7 @@
                 {{ $slot }}
             </main>
         </div>
+        <!-- LivewireScrip -->
+        @livewireScripts
     </body>
 </html>
