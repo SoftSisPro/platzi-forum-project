@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         User::factory()->create(['email' => 'jacajali@gmail.com']);
         User::factory(9)->create();
 
-        Category::factory(10)->create();
+        Category::factory(10)
+            ->hasThreads(20)
+            ->create();
     }
 }
