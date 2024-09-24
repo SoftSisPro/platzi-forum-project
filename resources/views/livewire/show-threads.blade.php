@@ -7,12 +7,12 @@
         <ul>
             @foreach ($categories as $category)
 
-            <li class="mb-2">
-                <a href="" class="p-2 rounded-md flex bg-slate-700 items-center gap-2 text-white/60 hover:text-white font-semibold text-xs capitalize">
-                    <span class="w-2 h-2 rounded-full" style="background-color: {{ $category->color }};"></span>
-                    {{ $category->name }}
-                </a>
-            </li>
+                <li class="mb-2">
+                    <a href="" class="p-2 rounded-md flex bg-slate-700 items-center gap-2 text-white/60 hover:text-white font-semibold text-xs capitalize">
+                        <span class="w-2 h-2 rounded-full" style="background-color: {{ $category->color }};"></span>
+                        {{ $category->name }}
+                    </a>
+                </li>
 
             @endforeach
             <li>
@@ -25,6 +25,15 @@
     </div>
     <!-- Vista de preguntas -->
     <div class="w-full">
+        <form class="mb-4">
+            <input
+                type="text"
+                placeholder="// ..."
+                class="bg-slate-700 border-0 rounded-md w-1/3 p-2 text-white/60 text-xs"
+                wire:model.live="search"
+            >
+        </form>
+
         @foreach ($threads as $thread)
             <div class="rounded-md bg-gradient-to-r from-slate-700 to-slate-900 hover:to-slate-700 mb-4">
                 <div class="p-4 flex gap-4">
