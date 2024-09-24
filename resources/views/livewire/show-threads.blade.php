@@ -28,7 +28,9 @@
         @foreach ($threads as $thread)
             <div class="rounded-md bg-gradient-to-r from-slate-700 to-slate-900 hover:to-slate-700 mb-4">
                 <div class="p-4 flex gap-4">
-                    <div class="">image, avatas</div>
+                    <div>
+                        <img src="{{ $thread->user->avatar() }}" alt="{{ $thread->user->name }}" class="rounded-md">
+                    </div>
                     <div class="w-full">
                         <h2 class="mb-4 flex items-start justify-between">
                             <a href="" class="text-xl font-semibold text-white/80">
@@ -36,18 +38,22 @@
                             </a>
                             <span
                                 class="rounded-full text-xs py-2 px-4 capitalize"
-                                style="color: #00aced; border: 1px solid #00aced;"
+                                style="color: {{ $thread->category->color }}; border: 1px solid {{ $thread->category->color }};"
                             >
-                                Categoria
+                                {{ $thread->category->name }}
                             </span>
                         </h2>
                         <p class="flex items-center justify-between w-full text-xs">
                             <span class="text-blue-600 font-semibold">
-                                Usuario
+                                {{ $thread->user->name }}
                                 <span class="text-white/80">{{ $thread->created_at->diffForHumans() }}</span>
                             </span>
                             <span class="text-slate-600">
-                                Respuesta y boton
+                                <i class="fas fa-comment mr-1"></i>
+                                {{ $thread->replies_count }}
+                                Respuesta {{ $thread->replies_count > 1 ? 's' : '' }}
+                                |
+                                <a href="" class="hover:text-white">Editar</a>
                             </span>
                         </p>
                     </div>
