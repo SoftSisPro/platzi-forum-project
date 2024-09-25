@@ -28,6 +28,9 @@
     </div>
 
     <!-- respuesta -->
+    @foreach ($replies as $reply)
+        @livewire ('show-reply', ['reply' => $reply], key('reply-'.$reply->id))
+    @endforeach
 
     <!-- formulario -->
     <form wire:submit.prevent="postReply">

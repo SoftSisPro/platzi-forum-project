@@ -11,4 +11,9 @@ class Reply extends Model
 
     protected $fillable = ['body', 'thread_id'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

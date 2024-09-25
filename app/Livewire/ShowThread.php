@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Thread;
+use App\Models\User;
 use Livewire\Component;
 
 class ShowThread extends Component
@@ -17,7 +18,7 @@ class ShowThread extends Component
             'body' => 'required',
         ]);
 
-        //- Create a new reply
+        // Crear una nueva respuesta
         auth()->user()->replies()->create([
             'thread_id' => $this->thread->id,
             'body' => $this->body,
@@ -29,6 +30,8 @@ class ShowThread extends Component
 
     public function render()
     {
-        return view('livewire.show-thread');
+        return view('livewire.show-thread',[
+            'replies' => $this->thread->replies()->get()
+        ]);
     }
 }
