@@ -9,7 +9,7 @@ use Livewire\Component;
 class ShowThread extends Component
 {
     public Thread $thread;
-    public $body="";
+    public $body ="";
 
     public function postReply()
     {
@@ -25,13 +25,16 @@ class ShowThread extends Component
         ]);
 
         //- refresh the thread
-        $this->body = '';
+        $this->body = "";
     }
 
     public function render()
     {
         return view('livewire.show-thread',[
-            'replies' => $this->thread->replies()->get()
+            'replies' => $this->thread
+                        ->replies()
+                        ->where('reply_id', null)
+                        ->get()
         ]);
     }
 }
