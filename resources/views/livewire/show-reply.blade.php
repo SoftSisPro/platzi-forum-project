@@ -9,11 +9,22 @@
                     {{ $reply->user->name }}
                     <span class="text-white/80">{{ $reply->created_at->diffForHumans() }}</span>
                 </p>
-                <p class="text-white/60 text-xs">
-                    {{ $reply->body }}
-                </p>
+                <p class="text-white/60 text-xs">{{ $reply->body }}</p>
+                <!-- formulario -->
+                @if($is_creating)
+                <form wire:submit.prevent="postChild" class="mt-4">
+                    <input
+                        type="text"
+                        placeholder="Escribe tu respuesta"
+                        class="bg-slate-700 border-1 border-slate-900 rounded-md w-full p-3 text-white/60 text-xs"
+                        wire:model.defer="body"
+                    >
+                </form>
+                @endif
                 <p class="mt-4 text-white/60 text-xs flex gap-2 justify-end">
-                    <a href="" class="hover:text-white">Responder</a>
+                    @if(is_null($reply->reply_id))
+                        <a href="#" wire:click.prevent="$toggle('is_creating')" class="hover:text-white">Responder</a>
+                    @endif
                     <a href="" class="hover:text-white">Editar</a>
                 </p>
             </div>
