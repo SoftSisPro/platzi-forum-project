@@ -14,4 +14,17 @@ class ThreadController extends Controller
 
         return view('thread.edit', compact('thread', 'categories'));
     }
+
+    public function update(Request $request, Thread $thread)
+    {
+        $request->validate([
+            'category_id' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $thread->update($request->all());
+
+        return redirect()->route('threads.edit', $thread)->with('success', 'Pregunta Actualizada con exito');
+    }
 }
