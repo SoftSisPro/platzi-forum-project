@@ -1,8 +1,9 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-10 py-12">
     <!-- Vista menu sidebar -->
     <div class="w-64">
-        <a href="" class="block w-full py-4 mb-10 bg-gradient-to-r from-blue-600 to-blue-700 hover:to-blue-600 text-white/60 font-bold text-xs text-center rounded-md">
-            Preguntar
+        <a href=""
+            class="block w-full py-4 mb-10 bg-gradient-to-r from-blue-600 to-blue-700 hover:to-blue-600 text-white/60 font-bold text-xs text-center rounded-md">
+            <i class="fas fa-comment mr-1"></i> Preguntar
         </a>
         <ul>
         @foreach ($categories as $category)
@@ -28,7 +29,7 @@
         <form class="mb-4">
             <input
                 type="text"
-                placeholder="// ..."
+                placeholder="Buscar..."
                 class="bg-slate-700 border-0 rounded-md w-1/3 p-2 text-white/60 text-xs"
                 wire:model.live="search"
             >
@@ -60,9 +61,11 @@
                             <span class="text-slate-600">
                                 <i class="fas fa-comment mr-1"></i>
                                 {{ $thread->replies_count }}
-                                Respuesta {{ $thread->replies_count > 1 ? 's' : '' }}
-                                |
-                                <a href="" class="hover:text-white">Editar</a>
+                                Respuesta{{ $thread->replies_count > 1 ? 's' : '' }}
+                                &nbsp;|&nbsp;
+                                <a href="{{ route('threads.edit', $thread) }}" class="hover:text-white">
+                                    <i class="fas fa-pen text-xs"></i> Editar
+                                </a>
                             </span>
                         </p>
                     </div>
