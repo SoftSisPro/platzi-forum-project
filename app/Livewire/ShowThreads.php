@@ -26,6 +26,7 @@ class ShowThreads extends Component
         if($this->category) {
             $threads -> where('category_id', $this->category); // - filter by category
         }
+        $threads -> with('category', 'user'); // - eager load category
         $threads -> withCount('replies'); // - count the number of replies
         $threads -> latest(); // - order by latest
 

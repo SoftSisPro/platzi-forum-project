@@ -32,9 +32,10 @@ class ShowThread extends Component
     {
         return view('livewire.show-thread',[
             'replies' => $this->thread
-                        ->replies()
-                        ->where('reply_id', null)
-                        ->get()
+                ->replies()
+                ->whereNull('reply_id')
+                //->with('user', 'replies.user', 'replies.replies')
+                ->get()
         ]);
     }
 }
