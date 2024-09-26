@@ -3,10 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Reply;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
+
 
 class ShowReply extends Component
 {
+    use AuthorizesRequests;
+
     public Reply $reply;
     public $body ="";
     public $is_creating = false;
@@ -20,12 +24,14 @@ class ShowReply extends Component
 
     public function updatedIsEditing()
     {
+        $this->authorize('update', $this->reply);
         $this->is_creating = false; # close the create form
         $this->body = $this->reply->body; # set the body to the current reply body
     }
 
     public function updateReply()
     {
+        $this->authorize('update', $this->reply);
         //- validate
         $this->validate([
             'body' => 'required',
