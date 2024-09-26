@@ -64,10 +64,12 @@
                                 <i class="fas fa-comment mr-1"></i>
                                 {{ $thread->replies_count }}
                                 Respuesta{{ $thread->replies_count > 1 ? 's' : '' }}
-                                &nbsp;|&nbsp;
-                                <a href="{{ route('threads.edit', $thread) }}" class="hover:text-white">
-                                    <i class="fas fa-pen text-xs"></i> Editar
-                                </a>
+                                @can ('update', $thread)
+                                    &nbsp;|&nbsp;
+                                    <a href="{{ route('threads.edit', $thread) }}" class="hover:text-white">
+                                        <i class="fas fa-pen text-xs"></i> Editar
+                                    </a>
+                                @endcan
                             </span>
                         </p>
                     </div>
