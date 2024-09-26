@@ -30,9 +30,10 @@ class ShowThreads extends Component
         $threads -> withCount('replies'); // - count the number of replies
         $threads -> latest(); // - order by latest
 
+
         return view('livewire.show-threads',[
             'categories' => $categories,
-            'threads' => $threads->get() // - get the results
+            'threads' => $threads->paginate(5) // - paginacion del resultado
         ]);
     }
 }
